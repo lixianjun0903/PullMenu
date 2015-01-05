@@ -17,10 +17,10 @@
     self = [super initWithFrame:frame];// 先调用父类的initWithFrame方法
     if (self) {
         
-    // 再自定义该类（UIView子类）的初始化操作。
+        // 再自定义该类（UIView子类）的初始化操作。
         self.textField=[[UITextField alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:CGRectMake(0, 0, frame.size.width/5, frame.size.height)];
+        [button setFrame:CGRectMake(0, 0, frame.size.width/8, frame.size.height)];
         [button setImage:[UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
         [button setBackgroundColor:[UIColor whiteColor]];
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -34,7 +34,7 @@
         [self.textField setLeftViewMode:UITextFieldViewModeAlways];
         [self.textField setRightViewMode:UITextFieldViewModeAlways];
         [self.textField setDelegate:(id<UITextFieldDelegate>)self];
-        [self.textField setFont:[UIFont systemFontOfSize:frame.size.height/2]];
+        [self.textField setFont:[UIFont systemFontOfSize:18]];
         [self addSubview:self.textField];
         
         self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, 0) style:UITableViewStylePlain];
@@ -50,7 +50,7 @@
         [self addSubview:self.tableView];
         [self.tableView setBackgroundView:nil];
         [self.tableView setBackgroundColor:[UIColor clearColor]];
-
+        
         
         
         [self setBackgroundColor:[UIColor whiteColor]];
@@ -106,7 +106,7 @@
             [self.tableView setFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height*3)];
             self.status=PullMenuStatus_show;
         } completion:^(BOOL finished) {
-           
+            
         }];
     }];
 }
@@ -156,8 +156,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
     [self pullMenuDismiss];
     self.textField.text=self.data[indexPath.row];
+    if(self.valueChangeBlock)
+    {
+        self.valueChangeBlock(self.textField.text);
+    }
 }
 @end

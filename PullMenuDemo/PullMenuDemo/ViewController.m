@@ -18,6 +18,10 @@
     [super viewDidLoad];
     PullMenu *menu=[[PullMenu alloc]initWithFrame:CGRectMake(10, 100, 200, 35) Data:@[@"广州",@"东莞",@"深圳"]];
     [self.view addSubview:menu];
+    [menu setValueChangeBlock:^(NSString *text)
+    {
+        
+    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
