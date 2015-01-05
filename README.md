@@ -4,7 +4,7 @@ PullMenu
 
 弹出下拉选择框或者列表的控件，Block回调,欢迎使用和交流
 ****
-<img src="http://github.com/LINAICAI/PullMenu/raw/master/screenshot.gif" />
+<img src="http://github.com/LINAICAI/PullMenu/master/screenshot.gif" />
 
 
 ###Userage | 使用说明
